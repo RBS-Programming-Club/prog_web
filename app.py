@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, render_template
 import os
 from dotenv import load_dotenv
 load_dotenv()
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 @app.route('/')
 def hello_world():
-    return '<h1>decode apocalypse</h1>'
+    return render_template("index.html")
  
 # main driver function
 if __name__ == '__main__':
