@@ -1,19 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
-    <script src="{{url_for('static',filename='js/bootstrap.bundle.js')}}"></script> 
-
-    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RBS Robotics And Programming Club</title>
+    <script src="https://kit.fontawesome.com/0d4140c03e.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins');
+*{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    user-select: none;
+}
+.nav_bar{
+    display: flex;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+}
+body{
+    background-color: black;
+}
+.search_button{
+    position: relative;
+    right: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    padding: 10px;
+    border-radius: 40px;
+}
 
+.tabs{
+    color: white;
+    cursor: pointer;
+
+}
+
+.tabs a{
+    padding: 20px;
+}
+
+.event{
+    width: 80%;
+    height: 300px;
+    background-color: black;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.events_options{
+    transition: 0.3s;
+    display: none;
+    background-color: black;
+    color: white;
+    flex-direction: column;
+    position: fixed;
+    left: 100px;
+    border-radius: 10px;
+}
+.event_button:hover  ~ .events_options{
+    display: flex;
+}
+
+.events_options:hover{
+    display: flex;
+}
+
+.events_options a:hover{
+    background-color: rgb(36, 36, 36);
+    border-radius: 10px;
+}
+
+.intro{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 40px;
+    font-weight: bolder;
+    letter-spacing: -6px;
+}
+.canvas{
+    width: 100%;
+    height: 100%;
+}
+
+.intro h1{
+    position: absolute;
+}
+
+.intro i{
+    position: absolute;
+    top: 80%;
+}
+.learn_more{
+    background-color: black;
+    color: white;
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.learn_more h1{
+    font-size: 64px;
+}
+
+a{
+    color: white;
+}
+a:link{
+    text-decoration: none;
+    color: white;
+}
+
+.page{
+    width: 300px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding: 1px;
+    
+}
+
+.page img{
+    grid-row-start: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+    </style>
 </head>
-
-<body> 
+<body>
+    <div class="nav_bar" id="nav_bar">
+        <div class="tabs">
+            <a href="#about_us">About Us&nbsp;<i class="fa-solid fa-caret-down"></i></a>
+            <a class="event_button" href="#event">Events&nbsp;<i class="fa-solid fa-caret-down"></i></a></i>
+        </div>
+    </div>
+    
+    <div class="intro">
+        <h1>RBS ROBO AND PROG CLUB</h1>
+        <i class="fa-solid fa-chevron-down"></i>
+        <canvas class="canvas" id="intro">
+        </canvas>
+        
+    </div>
+    </canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/granim/2.0.0/granim.min.js"></script>
+    <script>
+        var granimInstance = new Granim({
+            element: '#intro',
+            direction: 'left-right',
+            isPausedWhenNotInView: true,
+            image:{
+                source: "{{url_for('static',filename='images/bg.JPG')}}",
+                blendingMode: 'multiply'
+            },
+            states : {
+                "default-state": {
+                    gradients: [
+                        ['#D3D3D3', '#2D3436'],
+                        ['#353535', '#D7D7D7'],
+                        ['#7F8C8D', '#000000']
+                    ]
+                }
+            }
+        });
+    </script>
     {% block content %}
     {% endblock %}
+    <div class="learn_more">
+        <h1 id="about_us">About Us</h1>
+        <p>
+            Welcome to RBS Rob n Prog, where passion meets innovation! We are a dynamic community of robotics enthusiasts and programming prodigies, united by our shared love for cutting-edge technology and creative problem-solving.
+
+At RBS Rob n Prog, we believe in the power of collaboration and hands-on learning. Whether you're a seasoned robotics veteran or just starting to explore the world of programming, our club provides a welcoming space for you to dive into the exciting realms of robotics and coding.
+
+Our mission is to foster a vibrant community that inspires curiosity, fosters teamwork, and cultivates the skills needed to navigate the ever-evolving landscape of robotics and programming. From designing and building robotic marvels to writing elegant lines of code, our members embark on a journey that combines creativity, logic, and a passion for innovation.
+
+Join us as we explore the limitless possibilities of robotics and programming. Together, we aim to push boundaries, break barriers, and redefine what's possible in the fascinating intersection of technology and imagination.
+
+Get ready to unleash your inner innovator and be a part of the RBS Rob n Prog family – where we code, create, and conquer challenges together!
+        </p>
+    </div>
+    <div class="learn_more" id="event">
+        <h1 id="about_us">Events</h1>
+        <p>No events are going on currenty.</p>
+    </div>
+    <div class="learn_more" id="event">
+        <h1 id="about_us">Socials</h1>
+        <a style="font-size: 30px;"><i class="fa-brands fa-instagram"></i></a>
+        <p>@rbsrobnprog</p>
+    </div>
 </body>
 </html>
